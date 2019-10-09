@@ -16,4 +16,4 @@ Online 3d level from film Stenly Cubric "The Shining".
 
 Play
 ------------ 
-[Let's play](js.otrisovano.ru/garden)
+[Let's play](http://js.otrisovano.ru/garden)
