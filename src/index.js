@@ -36,13 +36,13 @@
  
 import Studio from './js/Studio'
 import StudioMap from './js/StudioMap'
-import KeyBoard from './js/keyBoard'
-import Emitter from './js/Emitter'
+import KeyBoard from './js/utils/keyBoard'
+import Emitter from './js/utils/Emitter'
 import LoadManager from './js/LoadManager'
 import Player from './js/Player'
 import Collisions from './js/Collisions'
 import { Kruger } from './js/Kruger'
-import FrameUpater from './js/FrameUpater'
+import FrameUpater from './js/utils/FrameUpater'
 import Checkpoints from './js/Checkpoints'
 
 
