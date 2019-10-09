@@ -1,0 +1,21 @@
+{
+  "name": "shine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpackConfig/webpackProd.js",
+    "start": "webpack-dev-server --open --config webpackConfig/webpackDev.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "file-loader": "^4.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "three": "^0.106.2",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.3.1",
+    "webpack-merge": "^4.2.1"
+  }
+}
