@@ -11,7 +11,7 @@ About
 Online 3d level from film Stenly Cubric "The Shining".  
   
   
-![pic](https://raw.githubusercontent.com/fire888/garden/src/assets/start-img.png)  
+![pic](https://github.com/fire888/garden/blob/master/src/assets/start-img.png)  
 
 
 Play
