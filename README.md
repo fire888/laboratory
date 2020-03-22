@@ -1,4 +1,4 @@
-# GARDEN :skull: # 
+# LABORATORY :skull: # 
 
 ![language](https://img.shields.io/badge/code-es6-green.svg) 
 ![Build status](https://img.shields.io/badge/build-passing-green.svg) 
@@ -8,14 +8,11 @@
 
 About
 ------------   
-Online 3d level from film Stenly Cubric "The Shining".  
+3d Quest.  
   
   
-![pic](https://github.com/fire888/garden/blob/master/src/assets/start-img.png)
-![pic](https://github.com/fire888/garden/blob/master/src/assets/start-img2.png)
-![pic](https://github.com/fire888/garden/blob/master/src/assets/start-img3.png)
-
+![pic](https://github.com/fire888/laboratory/blob/master/src/assets/start-img.png)
 
 Play
 ------------ 
-[Let's play](http://js.otrisovano.ru/garden)
+[Let's play](http://js.otrisovano.ru/191101LabStairs/04)
