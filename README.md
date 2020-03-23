@@ -15,4 +15,4 @@ About
 
 Play
 ------------ 
-[Let's play](http://js.otrisovano.ru/191101LabStairs/04)
+[Let's play](http://js.otrisovano.ru/tests/191101LabStairs/04)
