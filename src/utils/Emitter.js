@@ -10,7 +10,7 @@ export function Emitter () {
     }
 }
 
-const getOrCreateArrFromObj = obj => key => obj[key] = obj[key] ? obj[key] : []
+const getOrCreateArrFromObj = obj => key => obj[key] = obj[key] || []
 
 
 
