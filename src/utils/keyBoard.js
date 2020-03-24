@@ -1,4 +1,4 @@
-export default function keyBoard (eventEmitter) {
+export function KeyBoard (eventEmitter) {
     
     const emitter = eventEmitter
 

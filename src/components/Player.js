@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-export default function Player () {
+export function Player () {
   
   let mainObj
   const vec3Src = new THREE.Vector3()

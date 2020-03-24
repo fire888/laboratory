@@ -1,7 +1,7 @@
 
 import * as R from 'ramda'
 
-export default function FrameUpdater (eventEmitter) {
+export function FrameUpdater (eventEmitter) {
 
     const emitFrameUpdate = eventEmitter.emit('frameUpdate') 
 
