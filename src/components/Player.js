@@ -1,47 +1,34 @@
 import * as THREE from 'three'
 
-export function Player () {
-  
+export function Player (playerConfig) {
   let mainObj
   const vec3Src = new THREE.Vector3()
   const vec3Ray = new THREE.Vector3(0, -1, 0)
   let frontObj
   const vec3Src2 = new THREE.Vector3()
   const vec3Ray2 = new THREE.Vector3()
-  const vec3Ray3 = new THREE.Vector3()
 
   let collisionFloor
   let camera
   let keys = null
   let isOn = true
   
-  let speed = null
-  let speedRot = null
-  let offsetFromFloor = null 
-  let speedDown = null
 
-  let offsetWallCollision = null
+  const { 
+    startPosition, 
+    cameraData, 
+    frontObjPos, 
+    lightData, 
+    speed, 
+    offsetFromFloor, 
+    offsetFromFloorFactor,
+    speedDown, 
+    offsetWallCollision, 
+    speedRot,
+  } = playerConfig
 
 
-  const init = (playerConfig, emitter) => {
-    const { 
-      startPosition, 
-      cameraData, 
-      frontObjPos, 
-      lightData, 
-      speedVal, 
-      offsetFromFloorVal, 
-      speedDownVal, 
-      offsetWallCollisionVal, 
-      speedRotVal
-    } = playerConfig
-
-    speed = speedVal
-    speedRot = speedRotVal
-    speedDown = speedDownVal
-    offsetFromFloor = offsetFromFloorVal
-    offsetWallCollision = offsetWallCollisionVal
-
+  const init = emitter => {
     mainObj = new THREE.Object3D()
     mainObj.position.fromArray(startPosition)
     
@@ -76,16 +63,13 @@ export function Player () {
     vec3Src.copy(mainObj.position)
     const raycaster = new THREE.Raycaster(vec3Src, vec3Ray)
     const intersects = raycaster.intersectObject(collisionFloor[0]) 
-    if ( !intersects || intersects.length === 0 || intersects[0].distance > offsetFromFloor) {
+    if ( !intersects || intersects.length === 0 || intersects[0].distance > offsetFromFloor + offsetFromFloorFactor) {
       mainObj.position.y += speedDown
       return;
     }    
     mainObj.position.y = intersects[0].point.y + offsetFromFloor
 
     if (keys['up']) {
-
-
-
           frontObj.getWorldPosition(vec3Ray2)
           vec3Src2.copy(mainObj.position)
           
@@ -93,8 +77,6 @@ export function Player () {
 
           const raycaster01 = new THREE.Raycaster(vec3Src2, vec3Ray2)
           const intersects01 = raycaster01.intersectObject(collisionFloor[0])
-
-          //console.log(intersects01)
 
           if (intersects01 && intersects01[0]) {
             if (intersects01[0].distance < offsetWallCollision) {
@@ -107,7 +89,6 @@ export function Player () {
 
     keys['left'] && (mainObj.rotation.y += speedRot)
     keys['right'] && (mainObj.rotation.y -= speedRot)
-    
   }
 
   return { 

@@ -20,11 +20,12 @@ export const studioConfig = {
 }
 
 export const playerConfig = {
-    speedVal: 0.35,
-    speedRotVal: 0.02,
-    speedDownVal: -0.25,
-    offsetFromFloorVal: 8.0,
-    offsetWallCollisionVal: 2.5,
+    speed: 0.35,
+    speedRot: 0.02,
+    speedDown: -0.25,
+    offsetFromFloor: 8.0,
+    offsetFromFloorFactor: 0.5,
+    offsetWallCollision: 2.5,
     level: -13,
     //"startPosition": [-63, 26, 105],
     //"startPosition": [0, 0, 0],

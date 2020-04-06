@@ -1,27 +1,25 @@
 
 import { showStartButton } from './componentsHtml/introHtml'
 
-import { createStudio } from './components/createStudio'
 import { KeyBoard } from './utils/keyBoard'
 import { Emitter } from './utils/Emitter'
 import { cloneGltf } from './utils/glTFcopy'
 import { loadAssets } from './utils/loadAssets'
-import { Player } from './components/Player'
 import { FrameUpdater } from './utils/FrameUpater'
+
+import { createStudio } from './components/createStudio'
+import { Player } from './components/Player'
 import { createLevelFromAssets } from './components/createLevelFromAssets'
 import { createMonster } from './components/createMonster'
 
-import { assetsToLoad } from './constants/assetsToLoad' 
 import { unitsConfig, studioConfig, playerConfig } from './constants/elementsConfig'
-
+import { assetsToLoad } from './constants/assetsToLoad' 
 
 
 let state = 'none' // 'start' // || 'hunt' || 'done' || 'afterDone'
 let emitter,
 studio,
 player
-
-
 
 
 const initApp = () => {
@@ -32,8 +30,8 @@ const initApp = () => {
   studio = createStudio()
   studio.initScene(studioConfig)
 
-  player = Player()
-  player.init(playerConfig, emitter)
+  player = Player(playerConfig)
+  player.init(emitter)
   studio.setCamera(player.getCamera())
   studio.addToScene(player.getObj())
 

@@ -18,22 +18,24 @@ const loaderTimeOut = () => {
     }
     loader.style.marginLeft = offsetLoader + '%'
     loaderTimeOut() 
-  }, 100)
+  }, 30)
 }
 
 loaderTimeOut()
 
+
+
 const startButton = document.querySelector('.start')
-const progressWrapper = document.querySelector('.load-wrapper')
+const progressWrapper = document.querySelector('.progress-wrapper')
 
 const hideStartScreen = () => {
-  isAnimateLoader = false
-  let startScreen = document.querySelector('.start-screen')
+  const startScreen = document.querySelector('.start-screen')
   startScreen.style.display = 'none'
 }
 
 export const showStartButton = () => {
-  startButton.style.display = 'inline'
+  isAnimateLoader = false
+  startButton.style.display = 'block'
   startButton.addEventListener('click', hideStartScreen)
   progressWrapper.style.display = 'none'
 }
