@@ -1,6 +1,10 @@
 import * as THREE from 'three'
 
+let doorsObject
+
 export function Player (playerConfig) {
+  let emitter
+
   let mainObj
   const vec3Src = new THREE.Vector3()
   const vec3Ray = new THREE.Vector3(0, -1, 0)
@@ -12,6 +16,7 @@ export function Player (playerConfig) {
   let camera
   let keys = null
   let isOn = true
+
   
 
   const { 
@@ -28,7 +33,12 @@ export function Player (playerConfig) {
   } = playerConfig
 
 
-  const init = emitter => {
+  const init = (emitterLink, doorsObjectLink) => {
+    console.log('doorsObjectLink',doorsObjectLink)
+
+    emitter = emitterLink
+    doorsObject = doorsObjectLink
+
     mainObj = new THREE.Object3D()
     mainObj.position.fromArray(startPosition)
     
@@ -76,10 +86,20 @@ export function Player (playerConfig) {
           vec3Ray2.sub(vec3Src2)
 
           const raycaster01 = new THREE.Raycaster(vec3Src2, vec3Ray2)
-          const intersects01 = raycaster01.intersectObject(collisionFloor[0])
+          const intersects01 = raycaster01.intersectObjects(collisionFloor)
 
           if (intersects01 && intersects01[0]) {
             if (intersects01[0].distance < offsetWallCollision) {
+              const doorId = checkDoor(intersects01[0].object)
+              if (doorId) {
+                console.log('!!!!')
+                doorsObject[doorId]['mesh'].position.y += 20 
+                doorsObject[doorId]['ray'].position.y += 20 
+                //intersects01[0].object.position.y += 20
+                collisionFloor = collisionFloor.filter(item => item['userData']['id'] !== doorId)
+                collisionFloor.push(doorsObject[doorId]['ray'])
+                //emitter.emit('openDoor', doorId)
+              }
               return;
             }
           }
@@ -99,3 +119,6 @@ export function Player (playerConfig) {
     setFloorToCollision: arr => collisionFloor = arr,
   }
 }
+
+
+const checkDoor = mesh => mesh['userData']['type'] && (mesh['userData']['type'] === 'door') && mesh['userData']['id']

@@ -22,6 +22,17 @@ studio,
 player
 
 
+
+let doorsObject
+/*const openDoor = id => {
+  console.log('id')
+  console.log(doorsObject[id]['ray'].position.y)
+  debugger
+  doorsObject[id]['mesh'].position.y += 30
+  doorsObject[id]['ray'].position.y += 30 
+  console.log(doorsObject[id]['ray'].position.y)
+}*/
+
 const initApp = () => {
   emitter = Emitter()
   new FrameUpdater(emitter)
@@ -30,21 +41,20 @@ const initApp = () => {
   studio = createStudio()
   studio.initScene(studioConfig)
 
-  player = Player(playerConfig)
-  player.init(emitter)
-  studio.setCamera(player.getCamera())
-  studio.addToScene(player.getObj())
-
   const arrMonsters = []
 
   loadAssets(assetsToLoad)
     .then(assets => {
-      const { levelItems, collisionItems, materials } = createLevelFromAssets(assets)
+      const { levelItems, collisionItems, materials, doors } = createLevelFromAssets(assets)
 
-      levelItems.forEach(item => studio.addToScene(item))  
-      
-      player.setFloorToCollision(collisionItems) 
-      
+      /* DOORS */
+      doorsObject = doors
+
+      levelItems.forEach(item => studio.addToScene(item)) 
+      for (let key in doors) {
+        studio.addToScene(doors[key]['mesh'])
+      }
+            
       unitsConfig.forEach(item => {
         const unit = createMonster(cloneGltf(assets.monsterAnim), materials.monster, emitter, 0) 
         unit.mesh.position.set(item.pos[0], item.pos[1], item.pos[2])
@@ -55,11 +65,24 @@ const initApp = () => {
       
       state = 'start'
   
+      emitter.subscribe('openDoor')(id => {
+        console.log('!!!----------------', id)
+        //doors[id]['mesh'].position.x += 2 
+        //doors[id]['ray'].position.x += 2 
+      })
+
       emitter.subscribe('frameUpdate')(() => {
         arrMonsters.forEach(item =>
           Math.random() < 0.5 ? item.startPlay(true) :  item.startPlay(false))
         studio.drawFrame()
       })
+
+      player = Player(playerConfig)
+      player.init(emitter, doorsObject)
+      studio.setCamera(player.getCamera())
+      studio.addToScene(player.getObj())
+      console.log('index doorsObject',doorsObject)
+      player.setFloorToCollision(collisionItems) 
   
       showStartButton()
     })

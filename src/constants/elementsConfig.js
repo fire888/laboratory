@@ -25,10 +25,8 @@ export const playerConfig = {
     speedDown: -0.25,
     offsetFromFloor: 8.0,
     offsetFromFloorFactor: 0.5,
-    offsetWallCollision: 2.5,
+    offsetWallCollision: 3.5,
     level: -13,
-    //"startPosition": [-63, 26, 105],
-    //"startPosition": [0, 0, 0],
     startPosition: [48, 25, 10],
     cameraData: {
       fov: 90, 
@@ -82,3 +80,11 @@ export const unitsConfig = [{
     pos: [11, 18, -8],
     rot: hPI,
 }]
+
+
+export const doorsConfig = {
+  'factory': {
+    pos: [0, 0, 0],
+    rot: [0, 0, 0],
+  }
+} 

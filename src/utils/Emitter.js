@@ -3,8 +3,11 @@
 export function Emitter () { 
     const storage = {}
     return { 
-        emit: id => data => getOrCreateArrFromObj(storage)(id)
-            .forEach(action => action(data)),
+        emit: id => data => {
+            //console.log(storage) 
+            getOrCreateArrFromObj(storage)(id)
+                .forEach(action => action(data))
+            },
         subscribe: id => callback => getOrCreateArrFromObj(storage)(id)
             .push(callback)
     }
