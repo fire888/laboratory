@@ -12,7 +12,8 @@ export function Player (playerConfig) {
   const vec3Src2 = new THREE.Vector3()
   const vec3Ray2 = new THREE.Vector3()
 
-  let collisionFloor
+  let collisionFloors
+  let collisionWalls
   let camera
   let keys = null
   let isOn = true
@@ -33,9 +34,8 @@ export function Player (playerConfig) {
   } = playerConfig
 
 
-  const init = (emitterLink, doorsObjectLink) => {
-    console.log('doorsObjectLink',doorsObjectLink)
 
+  const init = (emitterLink, doorsObjectLink) => {
     emitter = emitterLink
     doorsObject = doorsObjectLink
 
@@ -70,42 +70,44 @@ export function Player (playerConfig) {
       return;
     }
 
+    // floor
     vec3Src.copy(mainObj.position)
-    const raycaster = new THREE.Raycaster(vec3Src, vec3Ray)
-    const intersects = raycaster.intersectObject(collisionFloor[0]) 
-    if ( !intersects || intersects.length === 0 || intersects[0].distance > offsetFromFloor + offsetFromFloorFactor) {
+    const raycasterDown = new THREE.Raycaster(vec3Src, vec3Ray)
+    const intersectsFloor = raycasterDown.intersectObject(collisionFloors[0]) 
+    if ( intersectsFloor && intersectsFloor[0] && intersectsFloor[0].distance > offsetFromFloor + offsetFromFloorFactor) {
       mainObj.position.y += speedDown
       return;
     }    
-    mainObj.position.y = intersects[0].point.y + offsetFromFloor
+    mainObj.position.y = intersectsFloor[0].point.y + offsetFromFloor
 
+
+    // wall
     if (keys['up']) {
-          frontObj.getWorldPosition(vec3Ray2)
-          vec3Src2.copy(mainObj.position)
+      frontObj.getWorldPosition(vec3Ray2)
+      vec3Src2.copy(mainObj.position)
           
-          vec3Ray2.sub(vec3Src2)
+      vec3Ray2.sub(vec3Src2)
 
-          const raycaster01 = new THREE.Raycaster(vec3Src2, vec3Ray2)
-          const intersects01 = raycaster01.intersectObjects(collisionFloor)
+      const raycasterWalls = new THREE.Raycaster(vec3Src2, vec3Ray2)
+      const intersectsWalls = raycasterWalls.intersectObjects(collisionWalls)
 
-          if (intersects01 && intersects01[0]) {
-            if (intersects01[0].distance < offsetWallCollision) {
-              const doorId = checkDoor(intersects01[0].object)
-              if (doorId) {
-                console.log('!!!!')
-                doorsObject[doorId]['mesh'].position.y += 20 
-                doorsObject[doorId]['ray'].position.y += 20 
-                //intersects01[0].object.position.y += 20
-                collisionFloor = collisionFloor.filter(item => item['userData']['id'] !== doorId)
-                collisionFloor.push(doorsObject[doorId]['ray'])
-                //emitter.emit('openDoor', doorId)
-              }
-              return;
-            }
-          }
+      if (intersectsWalls[0] && intersectsWalls[0].distance < 10) {
+        const doorId = checkDoor(intersectsWalls[0].object)
+        if (doorId) {
+          setTimeout(() => { 
+            doorsObject[doorId]['mesh'].position.y = 0
+          },  2000)
 
-          mainObj.translateZ( -speed )
-    }
+          doorsObject[doorId]['mesh'].position.y += 20
+          return; 
+        }
+      }
+          
+      if (intersectsWalls[0] && intersectsWalls[0].distance < offsetWallCollision) {
+        return;
+      }
+      mainObj.translateZ( -speed )
+    }  
 
     keys['left'] && (mainObj.rotation.y += speedRot)
     keys['right'] && (mainObj.rotation.y -= speedRot)
@@ -116,7 +118,10 @@ export function Player (playerConfig) {
     getObj: () => mainObj,
     getCamera: () => camera,
     getMesh: () => mesh,
-    setFloorToCollision: arr => collisionFloor = arr,
+    setFloorToCollision: (arrFloors, arrWalls) => { 
+      collisionFloors = arrFloors
+      collisionWalls = arrWalls
+    },
   }
 }
 

@@ -5,6 +5,7 @@ import '../assets/icon-map.png'
 import levelSrc from '../assets/level.obj'
 import levelRaySrc from '../assets/level-ray.obj'
 import wallSrc from '../assets/wall.jpg'
+import doorSrc from '../assets/door.jpg'
 
 import monsterMap from '../assets/monster-skin.jpg'
 import monsterAnimSrc from '../assets/monster-animate3.glb'
@@ -40,5 +41,10 @@ export const assetsToLoad = [
         type: 'img',
         filename: monsterMap,
         key: 'monster-skin'
+    },
+    {
+        type: 'img',
+        filename: doorSrc,
+        key: 'doorTexture'
     },
 ]

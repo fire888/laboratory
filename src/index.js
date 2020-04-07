@@ -45,7 +45,7 @@ const initApp = () => {
 
   loadAssets(assetsToLoad)
     .then(assets => {
-      const { levelItems, collisionItems, materials, doors } = createLevelFromAssets(assets)
+      const { levelItems, collisionWalls, collisionFloors, materials, doors } = createLevelFromAssets(assets)
 
       /* DOORS */
       doorsObject = doors
@@ -65,12 +65,6 @@ const initApp = () => {
       
       state = 'start'
   
-      emitter.subscribe('openDoor')(id => {
-        console.log('!!!----------------', id)
-        //doors[id]['mesh'].position.x += 2 
-        //doors[id]['ray'].position.x += 2 
-      })
-
       emitter.subscribe('frameUpdate')(() => {
         arrMonsters.forEach(item =>
           Math.random() < 0.5 ? item.startPlay(true) :  item.startPlay(false))
@@ -81,8 +75,8 @@ const initApp = () => {
       player.init(emitter, doorsObject)
       studio.setCamera(player.getCamera())
       studio.addToScene(player.getObj())
-      console.log('index doorsObject',doorsObject)
-      player.setFloorToCollision(collisionItems) 
+      console.log('index doorsObject', doorsObject)
+      player.setFloorToCollision(collisionFloors, collisionWalls) 
   
       showStartButton()
     })
