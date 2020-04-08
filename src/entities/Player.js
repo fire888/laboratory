@@ -9,8 +9,6 @@ export function Player (emitterLink) {
 
   let camera
   let keys = null
-  let isOn = true
-
 
   const { 
     startPosition, 
@@ -50,28 +48,27 @@ export function Player (emitterLink) {
   const checkWalls = createComponentCollisionWalls(mainObj, frontObj, offsetWallCollision)
   const checkDoors = createComponentCollisionDoors(mainObj, frontObj, offsetWallCollision)
 
+
   const update = () => {
-    if ( !keys || !isOn ) {
-      return;
-    }
     checkFloors.check()
 
     if (keys['up']) {
       if (checkWalls.check() || checkDoors.check()) return;
       mainObj.translateZ( -speed )
-    }  
+    }
 
     keys['left'] && (mainObj.rotation.y += speedRot)
     keys['right'] && (mainObj.rotation.y -= speedRot)
   }
 
+
   emitter.subscribe('keyEvent')(data => keys = data)
   emitter.subscribe('frameUpdate')(update)
+
 
   return {
     getObj: () => mainObj,
     getCamera: () => camera,
-    getMesh: () => mesh,
   }
 }
 
