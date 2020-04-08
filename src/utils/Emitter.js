@@ -4,7 +4,6 @@ export function Emitter () {
     const storage = {}
     return { 
         emit: id => data => {
-            //console.log(storage) 
             getOrCreateArrFromObj(storage)(id)
                 .forEach(action => action(data))
             },

@@ -1,82 +1,47 @@
 
-import { showStartButton } from './componentsHtml/introHtml'
+import { showStartButton } from './systemsHtml/introHtml'
 
 import { KeyBoard } from './utils/keyBoard'
 import { Emitter } from './utils/Emitter'
-import { cloneGltf } from './utils/glTFcopy'
 import { loadAssets } from './utils/loadAssets'
+import { prepareMeshesFromAssets } from './helpers/prepareMeshesFromAssets'
 import { FrameUpdater } from './utils/FrameUpater'
 
-import { createStudio } from './components/createStudio'
-import { Player } from './components/Player'
-import { createLevelFromAssets } from './components/createLevelFromAssets'
-import { createMonster } from './components/createMonster'
+import { createSystemDoors } from './systems/systemDoors'
+import { createSystemMonsters } from './systems/systemMonsters'
+import { createStudio } from './entities/createStudio'
+import { Player } from './entities/Player'
 
-import { unitsConfig, studioConfig, playerConfig } from './constants/elementsConfig'
+import { setFloorsToCollision, setEmitterToCollisionFloors } from './components/componentCollisionFloor'
+import { setWallsToCollision } from './components/componentCollisionWalls'
+
 import { assetsToLoad } from './constants/assetsToLoad' 
 
 
-let state = 'none' // 'start' // || 'hunt' || 'done' || 'afterDone'
-let emitter,
-studio,
-player
-
-
-
-let doorsObject
-/*const openDoor = id => {
-  console.log('id')
-  console.log(doorsObject[id]['ray'].position.y)
-  debugger
-  doorsObject[id]['mesh'].position.y += 30
-  doorsObject[id]['ray'].position.y += 30 
-  console.log(doorsObject[id]['ray'].position.y)
-}*/
-
 const initApp = () => {
-  emitter = Emitter()
+  const emitter = Emitter()
   new FrameUpdater(emitter)
   new KeyBoard(emitter)
 
-  studio = createStudio()
-  studio.initScene(studioConfig)
+  const studio = createStudio(emitter)
 
-  const arrMonsters = []
+  createSystemDoors(emitter, studio.addToScene)
+  createSystemMonsters(emitter, studio.addToScene)
 
   loadAssets(assetsToLoad)
     .then(assets => {
-      const { levelItems, collisionWalls, collisionFloors, materials, doors } = createLevelFromAssets(assets)
 
-      /* DOORS */
-      doorsObject = doors
+      const levelMeshes = prepareMeshesFromAssets(assets)
+      emitter.emit('assetsCreated')(levelMeshes)
 
-      levelItems.forEach(item => studio.addToScene(item)) 
-      for (let key in doors) {
-        studio.addToScene(doors[key]['mesh'])
-      }
-            
-      unitsConfig.forEach(item => {
-        const unit = createMonster(cloneGltf(assets.monsterAnim), materials.monster, emitter, 0) 
-        unit.mesh.position.set(item.pos[0], item.pos[1], item.pos[2])
-        unit.mesh.rotation.y = item.rot
-        studio.addToScene(unit.mesh)
-        arrMonsters.push(unit)
-      })
-      
-      state = 'start'
-  
-      emitter.subscribe('frameUpdate')(() => {
-        arrMonsters.forEach(item =>
-          Math.random() < 0.5 ? item.startPlay(true) :  item.startPlay(false))
-        studio.drawFrame()
-      })
+      const { collisionWalls, collisionFloors } = levelMeshes
+      setWallsToCollision(collisionWalls)
+      setFloorsToCollision(collisionFloors)
+      setEmitterToCollisionFloors(emitter)
 
-      player = Player(playerConfig)
-      player.init(emitter, doorsObject)
+      const player = Player(emitter)
       studio.setCamera(player.getCamera())
       studio.addToScene(player.getObj())
-      console.log('index doorsObject', doorsObject)
-      player.setFloorToCollision(collisionFloors, collisionWalls) 
   
       showStartButton()
     })

@@ -1,7 +1,6 @@
-export function createLevelFromAssets (assets) {
+export function prepareMeshesFromAssets (assets) {
 
-    const levelItems = [], collisionWalls = [], collisionFloors = [] 
-    const doors = {}
+    const levelItems = [], collisionWalls = [], collisionFloors = [], doors = {}
 
     const materials = createMaterials(assets)   
 
@@ -18,24 +17,7 @@ export function createLevelFromAssets (assets) {
           type: 'door',
           id: key,
         }
-        collisionWalls.push(doors[key]['mesh'])
-
-
-        //doors[key]['ray'] =  doors[key]['mesh'] // new THREE.Mesh(child.geometry, materials.easyMat)
-        //doors[key]['ray'] = new THREE.Mesh(child.geometry, materials.easyMat)
       }
-
-      /*if (child.name.includes("doorray_")) {
-        const key = child.name.split('_')[1]
-        !doors[key] && (doors[key] = {})
-        doors[key]['ray'] = new THREE.Mesh(child.geometry, materials.easyMat)
-        doors[key]['ray']['userData'] = {
-          part: 'ray',
-          type: 'door',
-          id: key,
-        }
-        collisionWalls.push(doors[key]['ray'])
-      }*/
     })
 
 
@@ -44,12 +26,9 @@ export function createLevelFromAssets (assets) {
       child.name === "floor_collision" && collisionFloors.push(new THREE.Mesh(child.geometry, materials.easyMat))
     })
 
-    /*for (let key in doors) {
-      collisionItems.push(doors[key]['ray'])
-    }*/
-
 
     return ({
+      monsterAnim: assets.monsterAnim,
       levelItems,
       doors,
       collisionWalls,
