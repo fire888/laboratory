@@ -20,9 +20,6 @@ import { assetsToLoad } from './constants/assetsToLoad'
 
 const initApp = () => {
   const emitter = Emitter()
-  new FrameUpdater(emitter)
-  new KeyBoard(emitter)
-
   const studio = createStudio(emitter)
 
   createSystemDoors(emitter, studio.addToScene)
@@ -39,6 +36,9 @@ const initApp = () => {
       setFloorsToCollision(collisionFloors)
       setEmitterToCollisionFloors(emitter)
 
+      new FrameUpdater(emitter)
+      new KeyBoard(emitter)
+      
       const player = Player(emitter)
       studio.setCamera(player.getCamera())
       studio.addToScene(player.getObj())
@@ -49,5 +49,4 @@ const initApp = () => {
 
 
 window.addEventListener('load', initApp)
-
 

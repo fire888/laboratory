@@ -3,6 +3,7 @@
  */
 
 import { setDoorsToCollision, setEmitterDoorsToCollision } from '../components/componentCollisionDoors'
+import { animateTopBottom } from '../components/animateTopBottom'
 
 export const createSystemDoors = (eventEmitter, addToSceneLink) => {
     const emitter = eventEmitter
@@ -21,12 +22,5 @@ export const createSystemDoors = (eventEmitter, addToSceneLink) => {
         setDoorsToCollision(arrDoors)
     })
 
-
-    emitter.subscribe('collisionDoors')(doorId => {
-        setTimeout(() => {
-            objDoors[doorId]['mesh'].position.y = 0
-        },  2000)
-
-        objDoors[doorId]['mesh'].position.y += 20
-    })
+    emitter.subscribe('collisionDoors')(doorId => animateTopBottom(objDoors[doorId]['mesh']))
 }
