@@ -1,16 +1,15 @@
 import * as THREE from 'three'
+
 import { playerConfig } from '../constants/elementsConfig'
+
 import { createComponentCollisionDoors } from '../components/componentCollisionDoors'
 import { createComponentCollisionFloors } from '../components/componentCollisionFloor'
 import { createComponentCollisionWalls } from '../components/componentCollisionWalls'
-
 import { createEventSwitchCvadrant } from '../components/checkerInCvadrant'
+
 
 export function Player (emitterLink) {
   const emitter = emitterLink
-
-  let camera
-  let keys = {}
 
   const { 
     startPosition, 
@@ -25,9 +24,16 @@ export function Player (emitterLink) {
     speedRot,
   } = playerConfig
 
+  let camera
+  let keys = {}
+  
   const mainObj = new THREE.Object3D()
   mainObj.position.fromArray(startPosition)
 
+  const frontObj = new THREE.Object3D()
+  frontObj.position.fromArray(frontObjPos)
+  mainObj.add(frontObj)
+  
   {
       const { fov, ratio, near, far, pos } = cameraData
       camera = new THREE.PerspectiveCamera(fov, ratio, near, far)
@@ -41,10 +47,6 @@ export function Player (emitterLink) {
       light.position.fromArray(pos)
       mainObj.add(light)
   }
-
-  const frontObj = new THREE.Object3D()
-  frontObj.position.fromArray(frontObjPos)
-  mainObj.add(frontObj)
 
   const checkFloors = createComponentCollisionFloors(mainObj, offsetFromFloor, offsetFromFloorFactor, speedDown)
   const checkWalls = createComponentCollisionWalls(mainObj, frontObj, offsetWallCollision)
