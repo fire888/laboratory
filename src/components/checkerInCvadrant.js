@@ -1,6 +1,7 @@
 import { playerConfig } from '../constants/elementsConfig'
 
-let oldKvadrant
+
+let oldKvadrant = [null, null, null]
 
 
 export function createEventSwitchCvadrant (playerMesh, emitter) {
