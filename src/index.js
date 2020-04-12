@@ -17,6 +17,7 @@ import { setFloorsToCollision, setEmitterToCollisionFloors } from './components/
 import { setWallsToCollision } from './components/componentCollisionWalls'
 
 import { assetsToLoad } from './constants/assetsToLoad' 
+import { createInfo } from './systemsHtml/info'
 
 
 const initApp = () => {
@@ -26,6 +27,7 @@ const initApp = () => {
   createSystemDoors(emitter, studio.addToScene)
   createSystemMonsters(emitter, studio.addToScene)
   createSystemDialog(emitter)
+  createInfo() 
 
   loadAssets(assetsToLoad)
     .then(assets => {

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sector</title>
+  <title>Factory</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name='viewport' content='width=device-width, user-scalable=no'>
   <style>
     * {
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 *:focus {
   outline: 0 !important;
@@ -116,11 +117,11 @@ a {
   </style>
 </head>
 <body>
-  <div id="debugger"></div>
+  <!--<div id="debugger"></div>-->
   <div class='start-screen'>
     <div class='message'>
       <div class = 'name'>
-        <h1>Sector</h1>
+        <h1>Factory</h1>
         <h2>adventure</h2>
       </div>
       <div class="img-wrapper"> 
@@ -138,8 +139,13 @@ a {
     </div>
   </div>
   <div class="ui">
+  <div id='info' style="display: none;">
+      <button id="close-info" class="control">x</button>
+      <div>By</br> <a href='http://otrisovano.ru' target="blanck">www.otrisovano.ru</a></br>
+        <a href='https://github.com/fire888/laboratory'>github</a></div>
+    </div>
     <div class="ui-top">
-      <button class="butt-info control">i</button>     
+      <button id="butt-info" class="control">i</button>     
     </div>
     <div class="ui-center">
         <div id="dialog-wrapper">
@@ -154,9 +160,10 @@ a {
         <button class="butt-left control">&#9668;</button>
         <button class="butt-right control">&#9658;</button>
       </div>
-      <button id="dialog-button-toggle" style="display: none;">Open dialog</button>
+      <div class="center-container">
+        <button id="dialog-button-toggle" style="display: none;">dialog</button>
+      </div>
       <div class='right-container'>
-        <!-- <button class="butt-map"><img src="imgs/icon-map.png"></button> -->
         <button class="butt-front control">&#9650;</button>
       </div>  
     </div>

@@ -171,6 +171,3 @@ export const scout = {
     },]
 }
 
-
-
-

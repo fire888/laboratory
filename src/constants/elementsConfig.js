@@ -48,15 +48,7 @@ export const unitsConfig = [{
     name: 'guard_01',
     pos: [-51, 26.316999435, 27],
     rot: 0,
-  },/*{
-    name: 'guard_02',
-    pos: [-32, 26.316999435, 29],
-    rot: 0,
-  },*//*{
-    name: 'guard_Super_01',
-    pos: [-7, 45.317001, -112],
-    rot: 0,
-  },*/{
+  },{
     name: 'guard_Super_02',
     pos: [-39, 45.317001, -112],
     rot: 0,

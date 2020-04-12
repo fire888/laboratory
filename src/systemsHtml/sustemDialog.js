@@ -1,8 +1,6 @@
-import '../stylesheets/dialog.css'
+
 
 import * as DIALOGS from '../constants/messages'
-
-console.log(DIALOGS)
 
 export function createSystemDialog (eventEmitter) {
     const openDialogButt = document.getElementById('dialog-button-toggle')
@@ -47,6 +45,7 @@ export function createSystemDialog (eventEmitter) {
                     p.innerText = mes
                     messages.appendChild(p)
                     messagesList[monsterName].push(p)
+                    
                     updateDialog()
                 }
                 replicies.appendChild(butt)
@@ -62,7 +61,7 @@ export function createSystemDialog (eventEmitter) {
         messagesIsShow && updateDialog()
 
         messagesWrapper.style.display = messagesIsShow ? 'flex' : 'none' 
-        openDialogButt.innerText = messagesIsShow ? 'close' : 'open dialog'
+        openDialogButt.innerText = messagesIsShow ? 'close' : 'dialog'
     })
 
 

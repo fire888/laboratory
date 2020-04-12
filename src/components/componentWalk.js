@@ -59,3 +59,4 @@ const startGo = mesh => {
         return countMove > numsMove
     }
 }
+

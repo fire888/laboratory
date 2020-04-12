@@ -1,19 +1,59 @@
 
 /*********************************************/
 
+#info {
+    position: absolute;
+    width: 80vw;
+    height: 40vh;
+    top: 20vh;
+    left: 50vw;
+    transform: translate(-40vw, 0);  
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    align-content: center;
+    color: white;
+    background: #000033aa;
+}
+
+#info #close-info {
+    flex: 0 1 auto;
+}
+
+#info a {
+    color: rgb(6, 232, 248);
+}
+
+#info div {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 2vh;
+    text-align: center;
+    line-height: 25px;
+}
+
+
+
 .ui {
     width: 100vw;
     height: 100vh;
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: stretch;
 }
 
 .ui-top, 
 .ui-center,
 .ui-bottom {
     display: flex;
+    flex: 0 1 auto; 
 }
 
 .ui-top {
@@ -22,18 +62,20 @@
 
 .ui-center {
     justify-content: space-around;
+    flex: 1 0 auto;
 }
 
 .ui-bottom {
     justify-content: space-between;
+    margin-bottom: 4vh;
 }
 
 #dialog-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
-    justify-content: flex-end;
+    flex: 1 0 auto;
+    justify-content: stretch;
  }
  
  #messages-wrapper {
@@ -42,7 +84,7 @@
     justify-content: flex-end;
     background: #000033aa;
     border: 5px solid #ffffff;
-    height: 80vh;
+    flex: 1 0 auto;
     width: 98vw;
     margin-bottom: 1vh;
     justify-content: flex-end;
@@ -52,19 +94,19 @@
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-content: center;
     align-items: center;
     color: #ffffff;
  }
 
  #messages p{
-    margin: 1vh;
-    font-size: 25px;
+    margin: 3px;
+    font-size: 23px;
  }
 
  #messages p.player{
-    font-size: 20px;
+    font-size: 18px;
     color: chartreuse;
  }
 
@@ -78,14 +120,22 @@
  }
 
 .left-container,
+.center-container,
 .right-container {
+    justify-content: center;
     display: flex;
     flex-direction: row;
     width: 25vw;
 }
 
+.left-container {
+    justify-content: flex-start;
+    flex: 0 1 auto;
+}
+
 .right-container {
     justify-content: flex-end;
+    flex: 0 1 auto;
 }
 
 
@@ -94,13 +144,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2vh;
+    align-content: center;
+    font-size: 23px;
     transition: 0.2s;  
-    height: 7vh;
-    width: 15vw;
+    height: 60px;
+    width: 35vw;
     border: 2px solid #e4f9ff; 
     min-height: 4vh;
-    width: 31vh;
+    width: 30vw;
     overflow: hidden;
     border-radius: 5px; 
     background: #181d38;
@@ -111,12 +162,16 @@
 
 
 .ui button.control  {
-    height: 7vh;
-    width: 7vh;
-    border-radius: 7vh;
+    flex: 0 0 60px;
+    height: 60px;
+    width: 60px;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 40px;
 }
 
 .ui #replicies button {
+    height: 35px;
     width: 100%;
     margin: 1px;
 }

@@ -1,4 +1,3 @@
-import { playerConfig } from '../constants/elementsConfig'
 
 
 let kvadrant = [null, null, null]
@@ -18,7 +17,7 @@ export function createEventSwitchCvadrant (player, emitter) {
 }
 
 
-const getKvadrant = (mesh, isPlayer) => [
+const getKvadrant = (mesh) => [
     Math.floor(mesh.position.x / 30),
     Math.floor(mesh.position.y / 10),
     Math.floor(mesh.position.z / 30)

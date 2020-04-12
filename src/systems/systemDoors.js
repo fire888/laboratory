@@ -28,7 +28,6 @@ export const createSystemDoors = (eventEmitter, addToSceneLink) => {
     })
 
     emitter.subscribe('unblockDoor')(data => { 
-        console.log(objDoors)
         data.idDoor.forEach(element => {
             objDoors[element]['mesh']['userData']['unblocked'] = true
         });

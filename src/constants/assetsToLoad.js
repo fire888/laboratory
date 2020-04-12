@@ -48,3 +48,4 @@ export const assetsToLoad = [
         key: 'doorTexture'
     },
 ]
+

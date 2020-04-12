@@ -38,7 +38,7 @@ export function createStudio (emitterLink) {
   }
 
   const resize = () => {
-    const size = renderer.domElement.parentNode.getBoundingClientRect()
+    const size = {width: window.innerWidth, height: window.innerHeight}//renderer.domElement.parentNode.getBoundingClientRect()
     renderer.setSize(size.width, size.height)
     if (camera) {
         camera.aspect = size.width/size.height

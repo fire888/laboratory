@@ -61,8 +61,6 @@ export function Player (emitterLink) {
     if (isButtonsDisabled) return;
     checkFloors.check()
 
-    debug.innerHTML = JSON.stringify(mainObj.position)
-
     if (keys['up']) {
 
       if (checkWalls.check() || checkDoors.check()) return;
