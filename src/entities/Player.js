@@ -12,7 +12,8 @@ export function Player (emitterLink) {
   const emitter = emitterLink
 
   const { 
-    startPosition, 
+    startPos,
+    startRot, 
     cameraData, 
     frontObjPos, 
     lightData, 
@@ -28,7 +29,8 @@ export function Player (emitterLink) {
   let keys = {}
   
   const mainObj = new THREE.Object3D()
-  mainObj.position.fromArray(startPosition)
+  mainObj.position.fromArray(startPos)
+  mainObj.rotation.fromArray(startRot)
 
   const frontObj = new THREE.Object3D()
   frontObj.position.fromArray(frontObjPos)

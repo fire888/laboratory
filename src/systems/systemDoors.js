@@ -1,7 +1,7 @@
 /**
  * Created by Vasilii on 08.04.2020.
  */
-
+import { createDoor } from '../entities/createDoor'
 import { setDoorsToCollision, setEmitterDoorsToCollision } from '../components/componentCollisionDoors'
 import { animateTopBottom } from '../components/animateTopBottom'
 
@@ -16,11 +16,14 @@ export const createSystemDoors = (eventEmitter, addToSceneLink) => {
         objDoors = assets.doors
         const arrDoors = []
         for (let key in objDoors) {
-            addToScene(objDoors[key]['mesh'])
-            arrDoors.push(objDoors[key]['mesh'])
+            const door = createDoor(objDoors[key])
+            addToScene(door)
+            arrDoors.push(door)
         }
         setDoorsToCollision(arrDoors)
     })
 
-    emitter.subscribe('collisionDoors')(doorId => animateTopBottom(objDoors[doorId]['mesh']))
+    emitter.subscribe('collisionDoors')(doorId => { 
+        objDoors[doorId]['mesh']['userData']['unblocked'] && animateTopBottom(objDoors[doorId]['mesh'])
+    })
 }

@@ -27,7 +27,8 @@ export const playerConfig = {
     offsetFromFloorFactor: 0.5,
     offsetWallCollision: 3.5,
     level: -13,
-    startPosition: [48, 25, 10],
+    startRot: [0, hPI, 0],
+    startPos: [48, 28, 10],
     cameraData: {
       fov: 90, 
       ratio: window.innerWidth / window.innerHeight, 
@@ -45,39 +46,39 @@ export const playerConfig = {
 
 export const unitsConfig = [{
     name: 'guard_01',
-    pos: [-51, 18, 27],
+    pos: [-51, 26.316999435, 27],
     rot: 0,
   },{
     name: 'guard_02',
-    pos: [-32, 18, 29],
+    pos: [-32, 26.316999435, 29],
     rot: 0,
   },{
     name: 'guard_Super_01',
-    pos: [-7, 38, -112],
+    pos: [-7, 45.317001, -112],
     rot: 0,
   },{
     name: 'guard_Super_02',
-    pos: [-39, 38, -112],
+    pos: [-39, 45.317001, -112],
     rot: 0,
   },{
     name: 'master_01',
-    pos: [-91, 19, -9],
+    pos: [-91, 26.316999435, -9],
     rot: hPI - 1,
   },{
     name: 'scientist_01',
-    pos: [31, 57, -48],
+    pos: [31, 64.3152008, -48],
     rot: hPI,
   },{
     name: 'bio_01',
-    pos: [-1, 18, -69],
+    pos: [-1, 25.31520, -69],
     rot: PI,
   },{
     name: 'programmer_01',
-    pos: [25, 57, -4],
+    pos: [25, 64.3152008, -4],
     rot: 0,
   },{
     name: 'factory_01',
-    pos: [11, 18, -8],
+    pos: [11, 25.31520, -8],
     rot: hPI,
 }]
 
