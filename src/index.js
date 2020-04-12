@@ -9,6 +9,7 @@ import { FrameUpdater } from './utils/FrameUpater'
 
 import { createSystemDoors } from './systems/systemDoors'
 import { createSystemMonsters } from './systems/systemMonsters'
+import { createSystemDialog } from './systemsHtml/sustemDialog'
 import { createStudio } from './entities/createStudio'
 import { Player } from './entities/Player'
 
@@ -24,6 +25,7 @@ const initApp = () => {
 
   createSystemDoors(emitter, studio.addToScene)
   createSystemMonsters(emitter, studio.addToScene)
+  createSystemDialog(emitter)
 
   loadAssets(assetsToLoad)
     .then(assets => {

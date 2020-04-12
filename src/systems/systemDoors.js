@@ -26,4 +26,17 @@ export const createSystemDoors = (eventEmitter, addToSceneLink) => {
     emitter.subscribe('collisionDoors')(doorId => { 
         objDoors[doorId]['mesh']['userData']['unblocked'] && animateTopBottom(objDoors[doorId]['mesh'])
     })
+
+    emitter.subscribe('unblockDoor')(data => { 
+        console.log(objDoors)
+        data.idDoor.forEach(element => {
+            objDoors[element]['mesh']['userData']['unblocked'] = true
+        });
+    })
+
+    emitter.subscribe('blockDoor')(data => { 
+        data.idDoor.forEach(element => {
+            objDoors[element]['mesh']['userData']['unblocked'] = false
+        });
+    })
 }

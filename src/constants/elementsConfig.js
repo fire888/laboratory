@@ -48,44 +48,42 @@ export const unitsConfig = [{
     name: 'guard_01',
     pos: [-51, 26.316999435, 27],
     rot: 0,
-  },{
+  },/*{
     name: 'guard_02',
     pos: [-32, 26.316999435, 29],
     rot: 0,
-  },{
+  },*//*{
     name: 'guard_Super_01',
     pos: [-7, 45.317001, -112],
     rot: 0,
-  },{
+  },*/{
     name: 'guard_Super_02',
     pos: [-39, 45.317001, -112],
     rot: 0,
   },{
-    name: 'master_01',
-    pos: [-91, 26.316999435, -9],
+    name: 'master',
+    pos: [-91, 26.316999435, 35],
     rot: hPI - 1,
   },{
-    name: 'scientist_01',
+    name: 'scientist',
     pos: [31, 64.3152008, -48],
     rot: hPI,
   },{
-    name: 'bio_01',
+    name: 'engineer',
     pos: [-1, 25.31520, -69],
     rot: PI,
   },{
-    name: 'programmer_01',
+    name: 'programmer',
     pos: [25, 64.3152008, -4],
     rot: 0,
   },{
-    name: 'factory_01',
+    name: 'mechanic',
     pos: [11, 25.31520, -8],
+    rot: hPI,
+  },{
+    name: 'scout',
+    pos: [-49, 26.316999435, 172],
     rot: hPI,
 }]
 
 
-export const doorsConfig = {
-  'factory': {
-    pos: [0, 0, 0],
-    rot: [0, 0, 0],
-  }
-} 

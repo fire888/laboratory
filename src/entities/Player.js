@@ -55,10 +55,16 @@ export function Player (emitterLink) {
   const checkDoors = createComponentCollisionDoors(mainObj, frontObj, offsetWallCollision)
   const checkerInCvadrant = createEventSwitchCvadrant(mainObj, emitter)
 
+  const debug = document.getElementById('debugger') 
+
   const update = () => {
+    if (isButtonsDisabled) return;
     checkFloors.check()
 
+    debug.innerHTML = JSON.stringify(mainObj.position)
+
     if (keys['up']) {
+
       if (checkWalls.check() || checkDoors.check()) return;
       mainObj.translateZ( -speed )
       checkerInCvadrant()
@@ -71,6 +77,9 @@ export function Player (emitterLink) {
 
   emitter.subscribe('keyEvent')(data => keys = data)
   emitter.subscribe('frameUpdate')(update)
+
+  let isButtonsDisabled = false
+  emitter.subscribe('messagesIsShow')(val => isButtonsDisabled = val) 
 
 
   return {

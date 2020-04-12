@@ -1,0 +1,132 @@
+
+/*********************************************/
+
+.ui {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ui-top, 
+.ui-center,
+.ui-bottom {
+    display: flex;
+}
+
+.ui-top {
+    justify-content: flex-end;
+}
+
+.ui-center {
+    justify-content: space-around;
+}
+
+.ui-bottom {
+    justify-content: space-between;
+}
+
+#dialog-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    justify-content: flex-end;
+ }
+ 
+ #messages-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: #000033aa;
+    border: 5px solid #ffffff;
+    height: 80vh;
+    width: 98vw;
+    margin-bottom: 1vh;
+    justify-content: flex-end;
+ }
+
+ #messages {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    color: #ffffff;
+ }
+
+ #messages p{
+    margin: 1vh;
+    font-size: 25px;
+ }
+
+ #messages p.player{
+    font-size: 20px;
+    color: chartreuse;
+ }
+
+ #replicies {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+ }
+
+.left-container,
+.right-container {
+    display: flex;
+    flex-direction: row;
+    width: 25vw;
+}
+
+.right-container {
+    justify-content: flex-end;
+}
+
+
+.ui button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+    transition: 0.2s;  
+    height: 7vh;
+    width: 15vw;
+    border: 2px solid #e4f9ff; 
+    min-height: 4vh;
+    width: 31vh;
+    overflow: hidden;
+    border-radius: 5px; 
+    background: #181d38;
+    color: #e4f9ff;
+    cursor: pointer;
+    margin: 1vh;
+}
+
+
+.ui button.control  {
+    height: 7vh;
+    width: 7vh;
+    border-radius: 7vh;
+}
+
+.ui #replicies button {
+    width: 100%;
+    margin: 1px;
+}
+
+
+.ui button:hover {
+    background: #e4f9ff;
+    color: #181d38;
+    cursor: pointer;
+    border-color:  #181d38;
+}
+
+

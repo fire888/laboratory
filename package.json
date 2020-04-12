@@ -19,7 +19,9 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "css-loader": "^3.5.2",
     "lodash": "^4.17.15",
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "style-loader": "^1.1.3"
   }
 }
