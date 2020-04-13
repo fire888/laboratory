@@ -52,6 +52,8 @@ export function Player (emitterLink) {
   const update = () => {
     checkFloors.check()
 
+    if (!keys) return;
+
     if (keys['up']) {
       if (checkWalls.check() || checkDoors.check()) return;
       mainObj.translateZ( -speed )

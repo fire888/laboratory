@@ -20,7 +20,7 @@ export const createComponentCollisionWalls = (objFromLink, objToLink, offset) =>
             vec3Ray2.sub(vec3Src2)
 
             const raycasterWalls = new THREE.Raycaster(vec3Src2, vec3Ray2)
-            const intersectsWalls = raycasterWalls.intersectObjects(WALLS_ARRAY)
+            const intersectsWalls = raycasterWalls.intersectObject(WALLS_ARRAY[0])
 
             if (intersectsWalls[0] && intersectsWalls[0].distance < offsetWallCollision) {
                 return true;
