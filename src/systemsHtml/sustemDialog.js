@@ -75,6 +75,6 @@ export function createSystemDialog (eventEmitter) {
         monsterName = data.name
         if (!messagesList[data.name]) messagesList[data.name] = []
         buttIsShow  = data.open
-        openDialogButt.style.display = data.open ? 'block' : 'none' 
+        openDialogButt.style.display = data.open ? 'flex' : 'none'
     })
 } 
