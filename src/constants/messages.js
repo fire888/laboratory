@@ -6,11 +6,11 @@ export const mechanic = {
         isDone: false,
     },{
         player: 'You ...?', 
-        nps: 'I am machanic. I create your body.',
+        nps: 'I am mechanic. I create your body.',
         isDone: false,
     },{
         player: 'MM ...?', 
-        nps: 'Go. Door is unblocked.... Beeb.',
+        nps: 'Go. Door is unblocked.... Beeeb.',
         isDone: false,
         event: {
             type: 'unblockDoor',
@@ -25,7 +25,7 @@ export const programmer = {
     isDone: false,
     messages: [{ 
         player: 'I ...?', 
-        nps: 'Once .... Beeb.. I set basic program in your memory.',
+        nps: 'Once .... Beeeb.. I set basic program in your memory.',
         isDone: false,
     },{
         player: 'You ...?', 
@@ -49,7 +49,7 @@ export const engineer = {
     isDone: false,
     messages: [{ 
         player: 'I ...?', 
-        nps: 'Once .. Beeb! I giv name to you. Droid_Id: 17543-06767-6767',
+        nps: 'Once .. Beeeb! I give name to you. Droid_Id: 17543-06767-6767',
         isDone: false,
     },{
         player: 'You ...?', 
@@ -91,7 +91,7 @@ export const master = {
     isDone: false,
     messages: [{ 
         player: 'I ...?', 
-        nps: 'I don’t know anything, go to the boss. ... Beeb. You have the accesses.',
+        nps: 'I don’t know anything, go to the boss. ... Beeeb. You have the accesses.',
         isDone: false,
         event: {
             type: 'unblockDoor',
@@ -136,7 +136,7 @@ export const guard_01 = {
         isDone: false,
     },{
         player: 'You ...?', 
-        nps: 'I am gateman. Beeb... Door is opened! Good by!',
+        nps: 'I am gateman. Beeeb... Door is opened! Good bye!',
         isDone: false,
         event: {
             type: 'unblockDoor',
@@ -162,7 +162,7 @@ export const scout = {
         }
     },{
         player: 'You ...?', 
-        nps: 'I am scout. Crazy factory create droids and close gates. Yo along in this desert.',
+        nps: 'I am scout. Crazy factory create droids and close gates. You alone in this desert.',
         isDone: false,
     },{
         player: 'MMM ...?', 
