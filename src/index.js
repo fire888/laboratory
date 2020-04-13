@@ -9,6 +9,7 @@ import { FrameUpdater } from './utils/FrameUpater'
 
 import { createSystemDoors } from './systems/systemDoors'
 import { createSystemMonsters } from './systems/systemMonsters'
+import { createSystemDialog } from './systemsHtml/sustemDialog'
 import { createStudio } from './entities/createStudio'
 import { Player } from './entities/Player'
 
@@ -16,17 +17,17 @@ import { setFloorsToCollision, setEmitterToCollisionFloors } from './components/
 import { setWallsToCollision } from './components/componentCollisionWalls'
 
 import { assetsToLoad } from './constants/assetsToLoad' 
+import { createInfo } from './systemsHtml/info'
 
 
 const initApp = () => {
   const emitter = Emitter()
-  new FrameUpdater(emitter)
-  new KeyBoard(emitter)
-
   const studio = createStudio(emitter)
 
   createSystemDoors(emitter, studio.addToScene)
   createSystemMonsters(emitter, studio.addToScene)
+  createSystemDialog(emitter)
+  createInfo() 
 
   loadAssets(assetsToLoad)
     .then(assets => {
@@ -39,6 +40,9 @@ const initApp = () => {
       setFloorsToCollision(collisionFloors)
       setEmitterToCollisionFloors(emitter)
 
+      new FrameUpdater(emitter)
+      new KeyBoard(emitter)
+      
       const player = Player(emitter)
       studio.setCamera(player.getCamera())
       studio.addToScene(player.getObj())
@@ -49,5 +53,4 @@ const initApp = () => {
 
 
 window.addEventListener('load', initApp)
-
 

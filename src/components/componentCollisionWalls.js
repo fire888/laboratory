@@ -35,3 +35,4 @@ export const createComponentCollisionWalls = (objFromLink, objToLink, offset) =>
 export const setWallsToCollision = arr => WALLS_ARRAY = arr
 
 let WALLS_ARRAY
+

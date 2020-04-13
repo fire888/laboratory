@@ -34,3 +34,4 @@ export const setEmitterToCollisionFloors = emitter => EMITTER = emitter
 
 let FLOORS_ARRAY
 let EMITTER
+

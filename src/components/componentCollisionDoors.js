@@ -44,3 +44,4 @@ export const setEmitterDoorsToCollision = emitter => EMITTER = emitter
 
 let DOORS_ARRAY
 let EMITTER
+
